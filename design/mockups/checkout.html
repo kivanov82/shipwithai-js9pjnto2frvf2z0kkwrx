@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkout - SmartNest</title>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&family=DM+Sans:wght@400;500&family=JetBrains+Mono&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: #0F0E0C;
+      color: #FAF8F5;
+      line-height: 1.5;
+    }
+    .container { max-width: 1200px; margin: 0 auto; padding: 2rem 20px; }
+    
+    /* Checkout Layout */
+    .checkout-layout {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr;
+      gap: 3rem;
+    }
+    
+    /* Forms */
+    h1 {
+      font-family: 'Manrope', sans-serif;
+      font-size: 2rem;
+      font-weight: 600;
+      margin-bottom: 2rem;
+    }
+    h3 {
+      font-family: 'Manrope', sans-serif;
+      font-size: 1.25rem;
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .section-number {
+      width: 28px;
+      height: 28px;
+      background: #B87333;
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.875rem;
+      font-weight: 600;
+    }
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+    label {
+      display: block;
+      margin-bottom: 0.5rem;
+      color: #8B8175;
+      font-size: 0.875rem;
+    }
+    input {
+      width: 100%;
+      padding: 0.75rem;
+      background: #1A1815;
+      border: 1px solid #2F2A24;
+      border-radius: 0.5rem;
+      color: #FAF8F5;
+      font-size: 1rem;
+      transition: all 200ms;
+    }
+    input:focus {
+      outline: none;
+      border-color: #B87333;
+      box-shadow: 0 0 0 3px rgba(184, 115, 51, 0.1);
+    }
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+    
+    /* Order Summary */
+    .order-summary {
+      background: rgba(26, 24, 21, 0.7);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(184, 115, 51, 0.2);
+      border-radius: 1rem;
+      padding: 2rem;
+      position: sticky;
+      top: 2rem;
+    }
+    .order-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 1rem 0;
+      border-bottom: 1px solid #2F2A24;
+    }
+    .order-item:last-of-type { border-bottom: none; }
+    .item-name {
+      font-weight: 500;
+    }
+    .item-price {
+      font-family: 'JetBrains Mono', monospace;
+      color: #FFB347;
+    }
+    .order-total {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 1.5rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid #2F2A24;
+      font-size: 1.25rem;
+      font-weight: 600;
+    }
+    .total-price {
+      font-family: 'JetBrains Mono', monospace;
+      color: #FFB347;
+    }
+    
+    /* Security badges */
+    .security-badges {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1.5rem;
+      opacity: 0.7;
+    }
+    .badge {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.875rem;
+      color: #8B8175;
+    }
+    .lock-icon {
+      color: #7C9070;
+    }
+    
+    /* Submit Button */
+    .checkout-button {
+      background: #B87333;
+      color: white;
+      padding: 1rem 2rem;
+      border: none;
+      border-radius: 0.5rem;
+      font-size: 1.125rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 200ms;
+      width: 100%;
+      margin-top: 2rem;
+      box-shadow: 0 0 20px rgba(184, 115, 51, 0.3);
+    }
+    .checkout-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 30px rgba(184, 115, 51, 0.5);
+    }
+    
+    /* Promo code */
+    .promo-section {
+      margin-top: 1.5rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid #2F2A24;
+    }
+    .promo-input {
+      display: flex;
+      gap: 0.5rem;
+    }
+    .promo-input input { flex: 1; }
+    .apply-button {
+      background: transparent;
+      color: #B87333;
+      border: 1px solid #B87333;
+      padding: 0.75rem 1.5rem;
+      border-radius: 0.5rem;
+      cursor: pointer;
+      transition: all 200ms;
+    }
+    .apply-button:hover {
+      background: rgba(184, 115, 51, 0.1);
+    }
+    
+    /* Success indicator */
+    .success-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(124, 144, 112, 0.1);
+      border: 1px solid rgba(124, 144, 112, 0.3);
+      padding: 0.5rem 1rem;
+      border-radius: 0.5rem;
+      margin-top: 1rem;
+      font-size: 0.875rem;
+      color: #7C9070;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="checkout-layout">
+      <div class="checkout-form">
+        <h1>Checkout</h1>
+        
+        <section>
+          <h3><span class="section-number">1</span> Contact Information</h3>
+          <div class="form-group">
+            <label>Email</label>
+            <input type="email" placeholder="your@email.com" />
+          </div>
+        </section>
+        
+        <section>
+          <h3><span class="section-number">2</span> Shipping Address</h3>
+          <div class="form-row">
+            <div class="form-group">
+              <label>First Name</label>
+              <input type="text" />
+            </div>
+            <div class="form-group">
+              <label>Last Name</label>
+              <input type="text" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Address</label>
+            <input type="text" />
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>City</label>
+              <input type="text" />
+            </div>
+            <div class="form-group">
+              <label>Zip Code</label>
+              <input type="text" />
+            </div>
+          </div>
+        </section>
+        
+        <section>
+          <h3><span class="section-number">3</span> Payment Method</h3>
+          <div class="form-group">
+            <label>Card Number</label>
+            <input type="text" placeholder="1234 5678 9012 3456" />
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Expiry Date</label>
+              <input type="text" placeholder="MM/YY" />
+            </div>
+            <div class="form-group">
+              <label>CVV</label>
+              <input type="text" placeholder="123" />
+            </div>
+          </div>
+          
+          <div class="security-badges">
+            <div class="badge">
+              <span class="lock-icon">🔒</span>
+              <span>Secure checkout</span>
+            </div>
+            <div class="badge">
+              <span>256-bit SSL encryption</span>
+            </div>
+          </div>
+        </section>
+      </div>
+      
+      <div class="order-summary">
+        <h3>Order Summary</h3>
+        
+        <div class="order-item">
+          <div>
+            <div class="item-name">Smart Thermostat Pro</div>
+            <div style="font-size: 0.875rem; color: #8B8175;">Qty: 1</div>
+          </div>
+          <div class="item-price">$179.99</div>
+        </div>
+        
+        <div class="order-item">
+          <div>
+            <div class="item-name">Living Room Bundle</div>
+            <div style="font-size: 0.875rem; color: #8B8175;">Qty: 1</div>
+          </div>
+          <div class="item-price">$299.00</div>
+        </div>
+        
+        <div class="order-item">
+          <div>Shipping</div>
+          <div class="item-price">FREE</div>
+        </div>
+        
+        <div class="promo-section">
+          <label style="margin-bottom: 0.5rem; display: block;">Promo Code</label>
+          <div class="promo-input">
+            <input type="text" placeholder="Enter code" />
+            <button class="apply-button">Apply</button>
+          </div>
+        </div>
+        
+        <div class="order-total">
+          <div>Total</div>
+          <div class="total-price">$478.99</div>
+        </div>
+        
+        <button class="checkout-button">Complete Order</button>
+        
+        <div class="success-badge">
+          <span style="color: #7C9070;">✓</span>
+          <span>Professional installation available</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
