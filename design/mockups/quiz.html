@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smart Home Quiz - SmartNest</title>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&family=DM+Sans:wght@400;500&family=JetBrains+Mono&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: #0F0E0C;
+      color: #FAF8F5;
+      line-height: 1.5;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    /* Quiz Container */
+    .quiz-container {
+      max-width: 800px;
+      width: 100%;
+      margin: 2rem;
+    }
+    
+    /* Progress Bar */
+    .progress-bar {
+      background: #2F2A24;
+      height: 8px;
+      border-radius: 4px;
+      margin-bottom: 3rem;
+      overflow: hidden;
+    }
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #B87333, #FFB347);
+      border-radius: 4px;
+      width: 33%;
+      transition: width 500ms ease;
+      box-shadow: 0 0 10px rgba(255, 179, 71, 0.5);
+    }
+    
+    /* Question Card */
+    .question-card {
+      background: rgba(26, 24, 21, 0.7);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(184, 115, 51, 0.2);
+      border-radius: 1rem;
+      padding: 3rem;
+      text-align: center;
+    }
+    h2 {
+      font-family: 'Manrope', sans-serif;
+      font-size: 2rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+    .question-number {
+      color: #B87333;
+      font-size: 1rem;
+      margin-bottom: 0.5rem;
+    }
+    .question-description {
+      color: #8B8175;
+      margin-bottom: 3rem;
+    }
+    
+    /* Answer Options */
+    .answer-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+    .answer-option {
+      background: #1A1815;
+      border: 2px solid #2F2A24;
+      border-radius: 0.75rem;
+      padding: 2rem;
+      cursor: pointer;
+      transition: all 200ms;
+      position: relative;
+    }
+    .answer-option:hover {
+      background: #221F1A;
+      border-color: rgba(184, 115, 51, 0.5);
+      transform: translateY(-2px);
+    }
+    .answer-option.selected {
+      border-color: #B87333;
+      background: rgba(184, 115, 51, 0.1);
+      box-shadow: 0 0 20px rgba(184, 115, 51, 0.3);
+    }
+    .answer-icon {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+    .answer-text {
+      font-weight: 500;
+      font-size: 1.125rem;
+    }
+    
+    /* Navigation */
+    .quiz-nav {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 2rem;
+    }
+    .nav-button {
+      background: transparent;
+      color: #8B8175;
+      border: 1px solid #2F2A24;
+      padding: 0.75rem 1.5rem;
+      border-radius: 0.5rem;
+      cursor: pointer;
+      transition: all 200ms;
+      font-size: 1rem;
+    }
+    .nav-button:hover:not(:disabled) {
+      border-color: #B87333;
+      color: #B87333;
+    }
+    .nav-button:disabled {
+      opacity: 0.3;
+      cursor: not-allowed;
+    }
+    .nav-button.primary {
+      background: #B87333;
+      color: white;
+      border-color: #B87333;
+    }
+    .nav-button.primary:hover {
+      background: #A06228;
+      transform: translateY(-1px);
+      box-shadow: 0 0 20px rgba(184, 115, 51, 0.4);
+    }
+    
+    /* Results Preview */
+    .results-preview {
+      background: rgba(124, 144, 112, 0.1);
+      border: 1px solid rgba(124, 144, 112, 0.3);
+      border-radius: 0.75rem;
+      padding: 1.5rem;
+      margin-top: 2rem;
+      text-align: center;
+    }
+    .led-indicator {
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      background: #7C9070;
+      border-radius: 50%;
+      margin-right: 0.5rem;
+      box-shadow: 0 0 8px rgba(124, 144, 112, 0.8);
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+  </style>
+</head>
+<body>
+  <div class="quiz-container">
+    <div class="progress-bar">
+      <div class="progress-fill"></div>
+    </div>
+    
+    <div class="question-card">
+      <div class="question-number">Question 3 of 8</div>
+      <h2>What's your living space like?</h2>
+      <p class="question-description">This helps us recommend the right coverage and device types for your home</p>
+      
+      <div class="answer-grid">
+        <div class="answer-option">
+          <div class="answer-icon">🏢</div>
+          <div class="answer-text">Studio/1BR Apartment</div>
+        </div>
+        <div class="answer-option selected">
+          <div class="answer-icon">🏠</div>
+          <div class="answer-text">2-3BR Home</div>
+        </div>
+        <div class="answer-option">
+          <div class="answer-icon">🏘️</div>
+          <div class="answer-text">Large Home (4BR+)</div>
+        </div>
+        <div class="answer-option">
+          <div class="answer-icon">🏪</div>
+          <div class="answer-text">Office/Commercial</div>
+        </div>
+      </div>
+      
+      <div class="quiz-nav">
+        <button class="nav-button">Previous</button>
+        <button class="nav-button primary">Next</button>
+      </div>
+      
+      <div class="results-preview">
+        <span class="led-indicator"></span>
+        Based on your answers so far, we're building a personalized recommendation
+      </div>
+    </div>
+  </div>
+</body>
+</html>
