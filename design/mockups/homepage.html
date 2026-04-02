@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SmartNest - Homepage</title>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&family=DM+Sans:wght@400;500&family=JetBrains+Mono&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: #0F0E0C;
+      color: #FAF8F5;
+      line-height: 1.5;
+    }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+    
+    /* Header */
+    header {
+      background: rgba(26, 24, 21, 0.7);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(184, 115, 51, 0.2);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 0;
+    }
+    .logo {
+      font-family: 'Manrope', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #B87333;
+    }
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+    .nav-links a {
+      color: #FAF8F5;
+      text-decoration: none;
+      transition: color 200ms;
+    }
+    .nav-links a:hover { color: #FFB347; }
+    
+    /* Hero */
+    .hero {
+      padding: 5rem 0;
+      text-align: center;
+    }
+    h1 {
+      font-family: 'Manrope', sans-serif;
+      font-size: 3rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      background: linear-gradient(135deg, #B87333, #FFB347);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .subtitle {
+      font-size: 1.25rem;
+      color: #8B8175;
+      margin-bottom: 2rem;
+    }
+    .cta-button {
+      display: inline-block;
+      background: #B87333;
+      color: white;
+      padding: 1rem 2rem;
+      border-radius: 0.5rem;
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 200ms;
+      box-shadow: 0 0 20px rgba(184, 115, 51, 0.3);
+    }
+    .cta-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 30px rgba(184, 115, 51, 0.5);
+    }
+    
+    /* Featured Products */
+    .featured {
+      padding: 4rem 0;
+    }
+    h2 {
+      font-family: 'Manrope', sans-serif;
+      font-size: 2.25rem;
+      font-weight: 600;
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+    .product-card {
+      background: #1A1815;
+      border: 1px solid #2F2A24;
+      border-radius: 1rem;
+      padding: 1.5rem;
+      transition: all 200ms;
+    }
+    .product-card:hover {
+      background: #221F1A;
+      border-color: rgba(184, 115, 51, 0.5);
+      box-shadow: 0 0 20px rgba(184, 115, 51, 0.2);
+    }
+    .led-indicator {
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      background: #FFB347;
+      border-radius: 50%;
+      box-shadow: 0 0 10px rgba(255, 179, 71, 0.8);
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+    .price {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1.5rem;
+      color: #FFB347;
+    }
+    
+    /* Quiz CTA */
+    .quiz-section {
+      padding: 4rem 0;
+      text-align: center;
+    }
+    .quiz-card {
+      background: rgba(184, 115, 51, 0.1);
+      border: 1px solid rgba(184, 115, 51, 0.3);
+      border-radius: 1rem;
+      padding: 3rem;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <nav>
+        <div class="logo">SmartNest</div>
+        <ul class="nav-links">
+          <li><a href="#">Products</a></li>
+          <li><a href="#">Bundles</a></li>
+          <li><a href="#">Quiz</a></li>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="container">
+      <h1>Where Comfort Meets Intelligence</h1>
+      <p class="subtitle">Transform your home with warm, intuitive smart technology</p>
+      <a href="#" class="cta-button">Take the Smart Home Quiz</a>
+    </div>
+  </section>
+
+  <section class="featured">
+    <div class="container">
+      <h2>Featured Smart Home Solutions</h2>
+      <div class="product-grid">
+        <div class="product-card">
+          <span class="led-indicator"></span>
+          <h3>Living Room Bundle</h3>
+          <p>Smart lighting, climate control, and entertainment</p>
+          <p class="price">$299.00</p>
+        </div>
+        <div class="product-card">
+          <span class="led-indicator"></span>
+          <h3>Security Starter</h3>
+          <p>Cameras, sensors, and smart locks</p>
+          <p class="price">$449.00</p>
+        </div>
+        <div class="product-card">
+          <span class="led-indicator"></span>
+          <h3>Climate Comfort</h3>
+          <p>Thermostat, humidity sensors, air quality</p>
+          <p class="price">$199.00</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="quiz-section">
+    <div class="container">
+      <div class="quiz-card">
+        <h2>Not Sure Where to Start?</h2>
+        <p>Our quick quiz helps you find the perfect smart home setup for your lifestyle</p>
+        <a href="#" class="cta-button">Start Quiz</a>
+      </div>
+    </div>
+  </section>
+</body>
+</html>
