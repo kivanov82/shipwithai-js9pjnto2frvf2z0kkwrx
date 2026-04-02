@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smart Thermostat Pro - SmartNest</title>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&family=DM+Sans:wght@400;500&family=JetBrains+Mono&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: #0F0E0C;
+      color: #FAF8F5;
+      line-height: 1.5;
+    }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+    
+    /* Product Layout */
+    .product-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      padding: 4rem 0;
+    }
+    
+    /* Product Image */
+    .product-image {
+      background: #1A1815;
+      border-radius: 1rem;
+      padding: 3rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 400px;
+      position: relative;
+      overflow: hidden;
+    }
+    .device-display {
+      width: 200px;
+      height: 200px;
+      background: #0F0E0C;
+      border: 2px solid #B87333;
+      border-radius: 1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 30px rgba(184, 115, 51, 0.3);
+    }
+    .temp-display {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 3rem;
+      color: #FFB347;
+      text-shadow: 0 0 10px rgba(255, 179, 71, 0.5);
+    }
+    .temp-unit {
+      font-size: 1.5rem;
+      color: #8B8175;
+    }
+    
+    /* Product Info */
+    h1 {
+      font-family: 'Manrope', sans-serif;
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+    .price-tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 2rem;
+      color: #FFB347;
+      margin-bottom: 2rem;
+    }
+    .features-list {
+      list-style: none;
+      margin: 2rem 0;
+    }
+    .features-list li {
+      padding: 0.5rem 0;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .led-dot {
+      width: 6px;
+      height: 6px;
+      background: #7C9070;
+      border-radius: 50%;
+      box-shadow: 0 0 6px rgba(124, 144, 112, 0.8);
+    }
+    
+    /* Controls */
+    .control-panel {
+      background: rgba(26, 24, 21, 0.7);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(184, 115, 51, 0.2);
+      border-radius: 0.75rem;
+      padding: 1.5rem;
+      margin: 2rem 0;
+    }
+    .temperature-control {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      margin: 1rem 0;
+    }
+    .temp-slider {
+      flex: 1;
+      height: 6px;
+      background: #2F2A24;
+      border-radius: 3px;
+      position: relative;
+    }
+    .temp-slider-fill {
+      width: 60%;
+      height: 100%;
+      background: linear-gradient(90deg, #7C9070, #FFB347);
+      border-radius: 3px;
+    }
+    .temp-label {
+      font-family: 'JetBrains Mono', monospace;
+      min-width: 60px;
+      text-align: right;
+    }
+    
+    /* Add to Cart */
+    .add-to-cart {
+      background: #B87333;
+      color: white;
+      padding: 1rem 2rem;
+      border: none;
+      border-radius: 0.5rem;
+      font-size: 1.125rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 200ms;
+      width: 100%;
+      box-shadow: 0 0 20px rgba(184, 115, 51, 0.3);
+    }
+    .add-to-cart:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 30px rgba(184, 115, 51, 0.5);
+    }
+    
+    /* Specs */
+    .specs-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+      margin-top: 3rem;
+    }
+    .spec-item {
+      background: #1A1815;
+      padding: 1rem;
+      border-radius: 0.5rem;
+      border: 1px solid #2F2A24;
+    }
+    .spec-label {
+      color: #8B8175;
+      font-size: 0.875rem;
+    }
+    .spec-value {
+      font-family: 'JetBrains Mono', monospace;
+      color: #FFB347;
+      font-size: 1.125rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="product-layout">
+      <div class="product-image">
+        <div class="device-display">
+          <div class="temp-display">72°<span class="temp-unit">F</span></div>
+        </div>
+      </div>
+      
+      <div class="product-info">
+        <h1>Smart Thermostat Pro</h1>
+        <div class="price-tag">$179.99</div>
+        
+        <p>Experience perfect climate control with our flagship smart thermostat. Learns your preferences, saves energy, and keeps your home comfortable 24/7.</p>
+        
+        <ul class="features-list">
+          <li><span class="led-dot"></span> Learns your schedule automatically</li>
+          <li><span class="led-dot"></span> Saves up to 23% on energy bills</li>
+          <li><span class="led-dot"></span> Works with Alexa, Google, HomeKit</li>
+          <li><span class="led-dot"></span> Remote control from anywhere</li>
+          <li><span class="led-dot"></span> Zigbee mesh network compatible</li>
+        </ul>
+        
+        <div class="control-panel">
+          <h3>Try It Out</h3>
+          <div class="temperature-control">
+            <span>Cool</span>
+            <div class="temp-slider">
+              <div class="temp-slider-fill"></div>
+            </div>
+            <span class="temp-label">72°F</span>
+          </div>
+        </div>
+        
+        <button class="add-to-cart">Add to Cart</button>
+      </div>
+    </div>
+    
+    <div class="specs-grid">
+      <div class="spec-item">
+        <div class="spec-label">Connectivity</div>
+        <div class="spec-value">Zigbee 3.0</div>
+      </div>
+      <div class="spec-item">
+        <div class="spec-label">Display</div>
+        <div class="spec-value">3.5" Color</div>
+      </div>
+      <div class="spec-item">
+        <div class="spec-label">Power</div>
+        <div class="spec-value">C-Wire/Battery</div>
+      </div>
+      <div class="spec-item">
+        <div class="spec-label">Compatibility</div>
+        <div class="spec-value">95% HVAC Systems</div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
