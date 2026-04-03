@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Thermostat - SmartNest</title>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;700;800&family=DM+Sans:wght@400;500&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: #0F0E0C;
+            color: #E8E4DD;
+            line-height: 1.6;
+            padding-top: 80px;
+        }
+        
+        .container { max-width: 1280px; margin: 0 auto; padding: 0 20px; }
+        
+        /* Product Grid */
+        .product-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            margin: 3rem 0;
+        }
+        
+        /* Product Images */
+        .product-images {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        
+        .main-image {
+            background: rgba(26, 24, 21, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(184, 115, 51, 0.2);
+            border-radius: 1rem;
+            padding: 2rem;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        
+        .device-display {
+            width: 200px;
+            height: 200px;
+            background: #1A1815;
+            border-radius: 50%;
+            border: 3px solid #B87333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 30px rgba(184, 115, 51, 0.3);
+        }
+        
+        .temp-display {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 3rem;
+            font-weight: 600;
+            color: #FFB347;
+        }
+        
+        .temp-unit {
+            font-size: 1.5rem;
+            color: #B87333;
+        }
+        
+        /* Product Info */
+        .product-info h1 {
+            font-family: 'Manrope', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #F7F5F2;
+            margin-bottom: 1rem;
+        }
+        
+        .price {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 2rem;
+            color: #FFB347;
+            margin-bottom: 0.5rem;
+        }
+        
+        .savings {
+            color: #87A96B;
+            font-size: 0.875rem;
+            margin-bottom: 2rem;
+        }
+        
+        .rating {
+            display: flex;
+            gap: 0.25rem;
+            margin-bottom: 2rem;
+        }
+        
+        .star {
+            color: #FFD700;
+            font-size: 1.25rem;
+        }
+        
+        /* Features List */
+        .features-list {
+            background: rgba(26, 24, 21, 0.5);
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .features-list li {
+            list-style: none;
+            padding: 0.5rem 0;
+            color: #C4BCAD;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .features-list li:before {
+            content: '✓';
+            color: #87A96B;
+            font-weight: bold;
+        }
+        
+        /* Controls */
+        .add-to-cart {
+            background: #B87333;
+            color: #0F0E0C;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 0.5rem;
+            font-size: 1.125rem;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            transition: all 0.2s;
+            margin-bottom: 1rem;
+        }
+        
+        .add-to-cart:hover {
+            background: #D4904D;
+            box-shadow: 0 0 20px rgba(184, 115, 51, 0.5);
+        }
+        
+        .compatibility {
+            background: rgba(135, 169, 107, 0.1);
+            border: 1px solid rgba(135, 169, 107, 0.3);
+            border-radius: 0.5rem;
+            padding: 1rem;
+            text-align: center;
+            color: #87A96B;
+        }
+        
+        /* Tabs */
+        .tabs {
+            display: flex;
+            gap: 2rem;
+            border-bottom: 1px solid rgba(184, 115, 51, 0.2);
+            margin-top: 4rem;
+        }
+        
+        .tab {
+            padding: 1rem 0;
+            color: #9C9488;
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s;
+        }
+        
+        .tab.active {
+            color: #FFB347;
+            border-bottom-color: #FFB347;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .product-grid { grid-template-columns: 1fr; }
+            .product-info h1 { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="product-grid">
+            <div class="product-images">
+                <div class="main-image">
+                    <div class="device-display">
+                        <span class="temp-display">72<span class="temp-unit">°F</span></span>
+                        <div style="color: #9C9488; font-size: 0.875rem;">Auto Mode</div>
+                    </div>
+                    <div style="position: absolute; top: 1rem; right: 1rem; width: 8px; height: 8px; background: #87A96B; border-radius: 50%; box-shadow: 0 0 10px rgba(135, 169, 107, 0.8);"></div>
+                </div>
+                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.5rem;">
+                    <div style="background: rgba(26, 24, 21, 0.7); border: 1px solid rgba(184, 115, 51, 0.2); border-radius: 0.5rem; padding: 1rem; text-align: center; cursor: pointer;">
+                        <div style="font-size: 0.75rem; color: #9C9488;">Front</div>
+                    </div>
+                    <div style="background: rgba(26, 24, 21, 0.7); border: 1px solid rgba(184, 115, 51, 0.2); border-radius: 0.5rem; padding: 1rem; text-align: center; cursor: pointer;">
+                        <div style="font-size: 0.75rem; color: #9C9488;">Side</div>
+                    </div>
+                    <div style="background: rgba(26, 24, 21, 0.7); border: 1px solid rgba(184, 115, 51, 0.2); border-radius: 0.5rem; padding: 1rem; text-align: center; cursor: pointer;">
+                        <div style="font-size: 0.75rem; color: #9C9488;">Install</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="product-info">
+                <div style="color: #B87333; font-size: 0.875rem; margin-bottom: 0.5rem;">Climate Control</div>
+                <h1>NestWarm Smart Thermostat</h1>
+                <div class="rating">
+                    <span class="star">★</span>
+                    <span class="star">★</span>
+                    <span class="star">★</span>
+                    <span class="star">★</span>
+                    <span class="star" style="color: #58524A;">★</span>
+                    <span style="color: #9C9488; margin-left: 0.5rem;">(248 reviews)</span>
+                </div>
+                
+                <div class="price">$149.99</div>
+                <div class="savings">Save $30 when bundled • 30% energy savings</div>
+                
+                <ul class="features-list">
+                    <li>Learning AI adjusts to your schedule</li>
+                    <li>Remote control via smartphone app</li>
+                    <li>Energy usage reports and insights</li>
+                    <li>Works with Alexa, Google, and Siri</li>
+                    <li>Zigbee compatible for local control</li>
+                </ul>
+                
+                <button class="add-to-cart">Add to Cart</button>
+                <div class="compatibility">
+                    <strong>✓ Compatible</strong> with your existing HVAC system
+                </div>
+            </div>
+        </div>
+        
+        <div class="tabs">
+            <div class="tab active">Overview</div>
+            <div class="tab">Specifications</div>
+            <div class="tab">Installation</div>
+            <div class="tab">Reviews</div>
+        </div>
+        
+        <div style="padding: 2rem 0; color: #C4BCAD;">
+            <h3 style="font-family: 'Manrope', sans-serif; color: #F7F5F2; margin-bottom: 1rem;">Intelligent Comfort, Simplified</h3>
+            <p>The NestWarm Smart Thermostat brings warmth and efficiency to your home with its intuitive learning capabilities. After just one week, it begins to understand your routine, automatically adjusting temperatures when you're home, away, or sleeping.</p>
+        </div>
+    </div>
+</body>
+</html>
