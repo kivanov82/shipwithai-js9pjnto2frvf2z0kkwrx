@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmartNest - Homepage</title>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;700;800&family=DM+Sans:wght@400;500&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: #0F0E0C;
+            color: #E8E4DD;
+            line-height: 1.6;
+        }
+        
+        .container { max-width: 1280px; margin: 0 auto; padding: 0 20px; }
+        
+        /* Header */
+        header {
+            background: rgba(26, 24, 21, 0.7);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(184, 115, 51, 0.2);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 100;
+        }
+        
+        nav { display: flex; justify-content: space-between; align-items: center; }
+        
+        .logo {
+            font-family: 'Manrope', sans-serif;
+            font-weight: 800;
+            font-size: 1.5rem;
+            color: #B87333;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+        
+        .nav-links a {
+            color: #C4BCAD;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        
+        .nav-links a:hover { color: #FFB347; }
+        
+        /* Hero Section */
+        .hero {
+            margin-top: 80px;
+            padding: 6rem 0;
+            background: linear-gradient(135deg, rgba(184, 115, 51, 0.1) 0%, rgba(255, 179, 71, 0.1) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+        
+        h1 {
+            font-family: 'Manrope', sans-serif;
+            font-size: 3rem;
+            font-weight: 800;
+            line-height: 1.1;
+            color: #F7F5F2;
+            margin-bottom: 1rem;
+        }
+        
+        .hero p {
+            font-size: 1.25rem;
+            color: #C4BCAD;
+            margin-bottom: 2rem;
+        }
+        
+        .btn-primary {
+            background: #B87333;
+            color: #0F0E0C;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 0.5rem;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: inline-block;
+            text-decoration: none;
+        }
+        
+        .btn-primary:hover {
+            background: #D4904D;
+            box-shadow: 0 0 20px rgba(184, 115, 51, 0.5);
+        }
+        
+        /* Device Display */
+        .device-showcase {
+            background: rgba(26, 24, 21, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(184, 115, 51, 0.2);
+            border-radius: 1rem;
+            padding: 2rem;
+            position: relative;
+        }
+        
+        .led-indicator {
+            width: 8px;
+            height: 8px;
+            background: #FFD700;
+            border-radius: 50%;
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            box-shadow: 0 0 10px rgba(255, 215, 0, 0.8);
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        
+        /* Features */
+        .features {
+            padding: 4rem 0;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+        
+        .feature-card {
+            background: rgba(26, 24, 21, 0.5);
+            border: 1px solid rgba(184, 115, 51, 0.1);
+            border-radius: 0.75rem;
+            padding: 2rem;
+            transition: all 0.3s;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(184, 115, 51, 0.3);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .feature-icon {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, #B87333, #FFB347);
+            border-radius: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-content { grid-template-columns: 1fr; }
+            .features { grid-template-columns: 1fr; }
+            h1 { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <a href="#" class="logo">
+                    <span style="color: #FFB347;">⬢</span> SmartNest
+                </a>
+                <ul class="nav-links">
+                    <li><a href="#">Products</a></li>
+                    <li><a href="#">Bundles</a></li>
+                    <li><a href="#">Take Quiz</a></li>
+                    <li><a href="#">Support</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div>
+                    <h1>Where Comfort Meets Intelligence</h1>
+                    <p>Transform your home into a warm, responsive sanctuary with our curated smart home solutions.</p>
+                    <a href="#" class="btn-primary">Take Our Smart Home Quiz</a>
+                </div>
+                <div class="device-showcase">
+                    <div class="led-indicator"></div>
+                    <h3 style="font-family: 'Manrope', sans-serif; margin-bottom: 1rem;">Living Room Bundle</h3>
+                    <p style="color: #9C9488;">Smart lighting, climate control, and entertainment automation</p>
+                    <div style="margin-top: 2rem; font-family: 'JetBrains Mono', monospace;">
+                        <div style="color: #87A96B;">● 4 Devices Connected</div>
+                        <div style="color: #FFB347;">● Energy Saving: 32%</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="container">
+        <div class="features">
+            <div class="feature-card">
+                <div class="feature-icon"></div>
+                <h3 style="font-family: 'Manrope', sans-serif; margin-bottom: 0.5rem;">Starter Bundles</h3>
+                <p style="color: #9C9488;">Pre-configured room packages perfect for beginners</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"></div>
+                <h3 style="font-family: 'Manrope', sans-serif; margin-bottom: 0.5rem;">Professional Install</h3>
+                <p style="color: #9C9488;">Expert setup by our certified technicians</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"></div>
+                <h3 style="font-family: 'Manrope', sans-serif; margin-bottom: 0.5rem;">Ongoing Support</h3>
+                <p style="color: #9C9488;">Lifetime assistance for your smart home journey</p>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
