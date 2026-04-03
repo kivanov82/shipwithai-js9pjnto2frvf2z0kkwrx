@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smart Lighting - Products | SmartHome Store</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'DM Sans', sans-serif; color: #171717; line-height: 1.6; background: #fafafa; }
+    .container { max-width: 1280px; margin: 0 auto; padding: 0 24px; }
+    header { background: white; border-bottom: 1px solid #e5e5e5; position: sticky; top: 0; z-index: 100; }
+    nav { display: flex; justify-content: space-between; align-items: center; height: 80px; }
+    .logo { font-size: 24px; font-weight: 600; color: #647864; }
+    .breadcrumb { padding: 16px 0; font-size: 14px; color: #525252; }
+    .breadcrumb a { color: #647864; text-decoration: none; }
+    .page-header { background: white; padding: 32px 0; margin-bottom: 32px; }
+    .page-title { font-size: 36px; margin-bottom: 8px; }
+    .page-subtitle { color: #525252; font-size: 18px; }
+    .content-wrapper { display: grid; grid-template-columns: 280px 1fr; gap: 32px; }
+    .sidebar { background: white; border-radius: 12px; padding: 24px; height: fit-content; }
+    .filter-section { margin-bottom: 32px; }
+    .filter-title { font-weight: 600; margin-bottom: 16px; }
+    .filter-option { display: flex; align-items: center; gap: 8px; margin-bottom: 12px; cursor: pointer; }
+    .filter-option input { width: 20px; height: 20px; accent-color: #647864; }
+    .toolbar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; }
+    .result-count { color: #525252; }
+    .sort-select { padding: 8px 16px; border: 2px solid #e5e5e5; border-radius: 8px; background: white; }
+    .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 24px; }
+    .product-card { background: white; border-radius: 12px; overflow: hidden; transition: all 0.2s; cursor: pointer; }
+    .product-card:hover { transform: translateY(-2px); box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); }
+    .product-image { aspect-ratio: 4/3; background: #f5f5f5; position: relative; }
+    .badge { position: absolute; top: 12px; right: 12px; background: #647864; color: white; padding: 4px 12px; border-radius: 100px; font-size: 12px; font-weight: 500; }
+    .product-info { padding: 20px; }
+    .product-name { font-size: 18px; font-weight: 600; margin-bottom: 8px; }
+    .product-desc { color: #525252; font-size: 14px; margin-bottom: 16px; }
+    .product-footer { display: flex; justify-content: space-between; align-items: center; }
+    .product-price { font-size: 24px; font-weight: 600; }
+    .btn-add { background: #647864; color: white; border: none; padding: 8px 16px; border-radius: 8px; font-weight: 500; cursor: pointer; transition: all 0.2s; }
+    .btn-add:hover { background: #4f5f4f; }
+    .price-range { margin: 16px 0; }
+    .price-input { display: flex; gap: 8px; align-items: center; }
+    .price-input input { width: 80px; padding: 6px; border: 2px solid #e5e5e5; border-radius: 6px; }
+    @media (max-width: 768px) {
+      .content-wrapper { grid-template-columns: 1fr; }
+      .sidebar { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="container">
+      <div class="logo">SmartHome</div>
+      <div style="display: flex; gap: 16px; align-items: center;">
+        <button style="background: none; border: none; cursor: pointer; font-size: 20px;">🔍</button>
+        <button style="background: none; border: none; cursor: pointer; font-size: 20px; position: relative;">
+          🛒
+          <span style="position: absolute; top: -8px; right: -8px; background: #647864; color: white; width: 20px; height: 20px; border-radius: 50%; font-size: 12px; display: flex; align-items: center; justify-content: center;">3</span>
+        </button>
+      </div>
+    </nav>
+  </header>
+  
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="#">Home</a> / <a href="#">Products</a> / Smart Lighting
+    </div>
+  </div>
+  
+  <section class="page-header">
+    <div class="container">
+      <h1 class="page-title">Smart Lighting</h1>
+      <p class="page-subtitle">Create the perfect ambiance with intelligent lighting solutions</p>
+    </div>
+  </section>
+  
+  <div class="container">
+    <div class="content-wrapper">
+      <aside class="sidebar">
+        <div class="filter-section">
+          <h3 class="filter-title">Categories</h3>
+          <label class="filter-option">
+            <input type="checkbox" checked>
+            <span>Smart Bulbs (18)</span>
+          </label>
+          <label class="filter-option">
+            <input type="checkbox">
+            <span>Light Strips (8)</span>
+          </label>
+          <label class="filter-option">
+            <input type="checkbox">
+            <span>Smart Switches (12)</span>
+          </label>
+          <label class="filter-option">
+            <input type="checkbox">
+            <span>Outdoor Lights (6)</span>
+          </label>
+        </div>
+        
+        <div class="filter-section">
+          <h3 class="filter-title">Price Range</h3>
+          <div class="price-range">
+            <input type="range" min="0" max="200" style="width: 100%;">
+            <div class="price-input">
+              <input type="number" value="0" placeholder="Min">
+              <span>-</span>
+              <input type="number" value="200" placeholder="Max">
+            </div>
+          </div>
+        </div>
+        
+        <div class="filter-section">
+          <h3 class="filter-title">Features</h3>
+          <label class="filter-option">
+            <input type="checkbox">
+            <span>Color Changing</span>
+          </label>
+          <label class="filter-option">
+            <input type="checkbox">
+            <span>Dimmable</span>
+          </label>
+          <label class="filter-option">
+            <input type="checkbox">
+            <span>Voice Control</span>
+          </label>
+          <label class="filter-option">
+            <input type="checkbox">
+            <span>Energy Monitoring</span>
+          </label>
+        </div>
+        
+        <div class="filter-section">
+          <h3 class="filter-title">Compatibility</h3>
+          <label class="filter-option">
+            <input type="checkbox" checked>
+            <span>Zigbee</span>
+          </label>
+          <label class="filter-option">
+            <input type="checkbox">
+            <span>HomeKit</span>
+          </label>
+          <label class="filter-option">
+            <input type="checkbox">
+            <span>Alexa</span>
+          </label>
+          <label class="filter-option">
+            <input type="checkbox">
+            <span>Google Home</span>
+          </label>
+        </div>
+      </aside>
+      
+      <main>
+        <div class="toolbar">
+          <div class="result-count">Showing 18 products</div>
+          <select class="sort-select">
+            <option>Sort by: Featured</option>
+            <option>Price: Low to High</option>
+            <option>Price: High to Low</option>
+            <option>Newest First</option>
+            <option>Best Sellers</option>
+          </select>
+        </div>
+        
+        <div class="product-grid">
+          <div class="product-card">
+            <div class="product-image">
+              <span class="badge">Best Seller</span>
+            </div>
+            <div class="product-info">
+              <h3 class="product-name">Smart Color Bulb A19</h3>
+              <p class="product-desc">16 million colors, works with all assistants</p>
+              <div class="product-footer">
+                <span class="product-price">$24.99</span>
+                <button class="btn-add">Add to Cart</button>
+              </div>
+            </div>
+          </div>
+          
+          <div class="product-card">
+            <div class="product-image"></div>
+            <div class="product-info">
+              <h3 class="product-name">White Ambiance BR30</h3>
+              <p class="product-desc">Warm to cool white, perfect for recessed lighting</p>
+              <div class="product-footer">
+                <span class="product-price">$19.99</span>
+                <button class="btn-add">Add to Cart</button>
+              </div>
+            </div>
+          </div>
+          
+          <div class="product-card">
+            <div class="product-image">
+              <span class="badge" style="background: #f59e0b;">New</span>
+            </div>
+            <div class="product-info">
+              <h3 class="product-name">Outdoor Path Light</h3>
+              <p class="product-desc">Weather-resistant smart lighting for gardens</p>
+              <div class="product-footer">
+                <span class="product-price">$89.99</span>
+                <button class="btn-add">Add to Cart</button>
+              </div>
+            </div>
+          </div>
+          
+          <div class="product-card">
+            <div class="product-image"></div>
+            <div class="product-info">
+              <h3 class="product-name">Smart Light Strip 2M</h3>
+              <p class="product-desc">Flexible LED strip with millions of colors</p>
+              <div class="product-footer">
+                <span class="product-price">$49.99</span>
+                <button class="btn-add">Add to Cart</button>
+              </div>
+            </div>
+          </div>
+          
+          <div class="product-card">
+            <div class="product-image"></div>
+            <div class="product-info">
+              <h3 class="product-name">Dimmer Switch</h3>
+              <p class="product-desc">Control any dimmable bulb with smart features</p>
+              <div class="product-footer">
+                <span class="product-price">$34.99</span>
+                <button class="btn-add">Add to Cart</button>
+              </div>
+            </div>
+          </div>
+          
+          <div class="product-card">
+            <div class="product-image"></div>
+            <div class="product-info">
+              <h3 class="product-name">Candle Bulb E12 Set</h3>
+              <p class="product-desc">4-pack of chandelier smart bulbs</p>
+              <div class="product-footer">
+                <span class="product-price">$79.99</span>
+                <button class="btn-add">Add to Cart</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+</body>
+</html>
