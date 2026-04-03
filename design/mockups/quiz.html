@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smart Home Quiz - Find Your Perfect Setup | SmartHome Store</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'DM Sans', sans-serif; color: #171717; line-height: 1.6; background: #f6f7f6; min-height: 100vh; }
+    .quiz-header { background: white; border-bottom: 1px solid #e5e5e5; padding: 24px 0; }
+    .container { max-width: 800px; margin: 0 auto; padding: 0 24px; }
+    .logo { font-size: 24px; font-weight: 600; color: #647864; text-align: center; }
+    .progress-bar { background: #e5e5e5; height: 8px; border-radius: 100px; margin: 32px 0; overflow: hidden; }
+    .progress-fill { background: #647864; height: 100%; border-radius: 100px; transition: width 0.3s ease; }
+    .quiz-container { background: white; border-radius: 16px; padding: 48px; margin: 32px auto; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
+    .question-number { color: #647864; font-weight: 600; margin-bottom: 8px; }
+    .question-title { font-size: 28px; margin-bottom: 32px; }
+    .answer-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-bottom: 48px; }
+    .answer-card { background: #fafafa; border: 2px solid #e5e5e5; border-radius: 12px; padding: 24px; cursor: pointer; transition: all 0.2s; text-align: center; }
+    .answer-card:hover { border-color: #a3b3a3; background: #f6f7f6; transform: translateY(-2px); }
+    .answer-card.selected { border-color: #647864; background: #f6f7f6; }
+    .answer-icon { width: 64px; height: 64px; background: #e3e7e3; border-radius: 12px; margin: 0 auto 16px; }
+    .answer-title { font-size: 18px; font-weight: 600; margin-bottom: 8px; }
+    .answer-desc { color: #525252; font-size: 14px; }
+    .quiz-navigation { display: flex; justify-content: space-between; align-items: center; }
+    .btn { border: none; padding: 12px 24px; border-radius: 8px; font-size: 16px; font-weight: 500; cursor: pointer; transition: all 0.2s; }
+    .btn-back { background: #e5e5e5; color: #525252; }
+    .btn-back:hover { background: #d4d4d4; }
+    .btn-next { background: #647864; color: white; }
+    .btn-next:hover { background: #4f5f4f; }
+    .btn-next:disabled { background: #d4d4d4; cursor: not-allowed; }
+    .step-indicator { display: flex; gap: 8px; justify-content: center; margin-bottom: 32px; }
+    .step-dot { width: 8px; height: 8px; border-radius: 50%; background: #e5e5e5; transition: all 0.2s; }
+    .step-dot.active { width: 24px; border-radius: 100px; background: #647864; }
+    @media (max-width: 640px) {
+      .answer-grid { grid-template-columns: 1fr; }
+      .quiz-container { padding: 32px 24px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="quiz-header">
+    <div class="container">
+      <div class="logo">SmartHome</div>
+    </div>
+  </header>
+  
+  <div class="container">
+    <div class="progress-bar">
+      <div class="progress-fill" style="width: 20%;"></div>
+    </div>
+    
+    <div class="quiz-container">
+      <div class="step-indicator">
+        <div class="step-dot active"></div>
+        <div class="step-dot"></div>
+        <div class="step-dot"></div>
+        <div class="step-dot"></div>
+        <div class="step-dot"></div>
+      </div>
+      
+      <div class="question-number">Question 1 of 5</div>
+      <h2 class="question-title">What type of space are you looking to automate?</h2>
+      
+      <div class="answer-grid">
+        <div class="answer-card" onclick="this.classList.toggle('selected')">
+          <div class="answer-icon"></div>
+          <div class="answer-title">Single Room</div>
+          <div class="answer-desc">Start with one room like bedroom or living room</div>
+        </div>
+        
+        <div class="answer-card" onclick="this.classList.toggle('selected')">
+          <div class="answer-icon"></div>
+          <div class="answer-title">Apartment</div>
+          <div class="answer-desc">Complete solution for 1-2 bedroom apartment</div>
+        </div>
+        
+        <div class="answer-card" onclick="this.classList.toggle('selected')">
+          <div class="answer-icon"></div>
+          <div class="answer-title">House</div>
+          <div class="answer-desc">Full home automation for multi-room house</div>
+        </div>
+        
+        <div class="answer-card" onclick="this.classList.toggle('selected')">
+          <div class="answer-icon"></div>
+          <div class="answer-title">Office</div>
+          <div class="answer-desc">Smart solutions for small office spaces</div>
+        </div>
+      </div>
+      
+      <div class="quiz-navigation">
+        <button class="btn btn-back">Back</button>
+        <button class="btn btn-next">Next Question</button>
+      </div>
+    </div>
+  </div>
+  
+  <script>
+    // Simple interaction for demo
+    document.querySelectorAll('.answer-card').forEach(card => {
+      card.addEventListener('click', () => {
+        document.querySelectorAll('.answer-card').forEach(c => c.classList.remove('selected'));
+        card.classList.add('selected');
+        document.querySelector('.btn-next').disabled = false;
+      });
+    });
+  </script>
+</body>
+</html>

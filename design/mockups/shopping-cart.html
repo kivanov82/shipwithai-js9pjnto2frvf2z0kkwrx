@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shopping Cart - SmartHome Store</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'DM Sans', sans-serif; color: #171717; line-height: 1.6; background: #fafafa; }
+    .container { max-width: 1280px; margin: 0 auto; padding: 0 24px; }
+    header { background: white; border-bottom: 1px solid #e5e5e5; position: sticky; top: 0; z-index: 100; }
+    nav { display: flex; justify-content: space-between; align-items: center; height: 80px; }
+    .logo { font-size: 24px; font-weight: 600; color: #647864; }
+    .page-header { padding: 48px 0 32px; }
+    .page-title { font-size: 36px; margin-bottom: 8px; }
+    .cart-layout { display: grid; grid-template-columns: 1fr 400px; gap: 32px; padding-bottom: 80px; }
+    .cart-items { background: white; border-radius: 12px; padding: 32px; }
+    .cart-item { display: grid; grid-template-columns: 120px 1fr auto; gap: 24px; padding: 24px 0; border-bottom: 1px solid #e5e5e5; }
+    .cart-item:last-child { border-bottom: none; }
+    .item-image { aspect-ratio: 1; background: #f5f5f5; border-radius: 8px; }
+    .item-details h3 { font-size: 18px; font-weight: 600; margin-bottom: 8px; }
+    .item-details p { color: #525252; font-size: 14px; margin-bottom: 16px; }
+    .item-actions { display: flex; align-items: center; gap: 16px; }
+    .qty-control { display: flex; align-items: center; border: 2px solid #e5e5e5; border-radius: 8px; height: 40px; }
+    .qty-btn { width: 40px; height: 100%; border: none; background: transparent; cursor: pointer; }
+    .qty-input { width: 50px; text-align: center; border: none; font-family: 'JetBrains Mono', monospace; }
+    .remove-btn { color: #ef4444; background: none; border: none; cursor: pointer; font-size: 14px; }
+    .item-price { text-align: right; }
+    .price { font-size: 20px; font-weight: 600; font-family: 'JetBrains Mono', monospace; }
+    .unit-price { color: #525252; font-size: 14px; }
+    .order-summary { background: white; border-radius: 12px; padding: 32px; height: fit-content; position: sticky; top: 112px; }
+    .summary-row { display: flex; justify-content: space-between; margin-bottom: 16px; }
+    .summary-row.total { padding-top: 16px; border-top: 2px solid #e5e5e5; font-size: 20px; font-weight: 600; }
+    .promo-code { margin: 24px 0; }
+    .promo-input { display: flex; gap: 8px; }
+    .promo-input input { flex: 1; padding: 10px 16px; border: 2px solid #e5e5e5; border-radius: 8px; }
+    .btn-apply { background: #647864; color: white; border: none; padding: 10px 20px; border-radius: 8px; font-weight: 500; cursor: pointer; }
+    .btn-checkout { background: #647864; color: white; border: none; padding: 16px 32px; border-radius: 8px; font-size: 18px; font-weight: 500; cursor: pointer; transition: all 0.2s; width: 100%; margin-bottom: 16px; }
+    .btn-checkout:hover { background: #4f5f4f; }
+    .security-badges { display: flex; justify-content: center; gap: 16px; margin-top: 24px; }
+    .empty-cart { text-align: center; padding: 80px 0; }
+    .empty-icon { width: 120px; height: 120px; background: #f5f5f5; border-radius: 50%; margin: 0 auto 24px; }
+    .savings-badge { background: #f6f7f6; border: 1px solid #c7d1c7; color: #647864; padding: 12px; border-radius: 8px; margin-bottom: 24px; text-align: center; font-weight: 500; }
+    @media (max-width: 768px) {
+      .cart-layout { grid-template-columns: 1fr; }
+      .order-summary { position: static; }
+      .cart-item { grid-template-columns: 80px 1fr; }
+      .item-price { grid-column: 2; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="container">
+      <div class="logo">SmartHome</div>
+      <div style="display: flex; gap: 16px; align-items: center;">
+        <span style="color: #525252;">Continue Shopping</span>
+      </div>
+    </nav>
+  </header>
+  
+  <div class="container">
+    <div class="page-header">
+      <h1 class="page-title">Shopping Cart (3 items)</h1>
+    </div>
+    
+    <div class="cart-layout">
+      <div class="cart-items">
+        <div class="savings-badge">
+          🎉 You're saving $45 on this order!
+        </div>
+        
+        <div class="cart-item">
+          <div class="item-image"></div>
+          <div class="item-details">
+            <h3>Smart Color Bulb A19</h3>
+            <p>16 million colors + whites</p>
+            <div class="item-actions">
+              <div class="qty-control">
+                <button class="qty-btn">-</button>
+                <input type="number" class="qty-input" value="4" min="1">
+                <button class="qty-btn">+</button>
+              </div>
+              <button class="remove-btn">Remove</button>
+            </div>
+          </div>
+          <div class="item-price">
+            <div class="price">$84.96</div>
+            <div class="unit-price">$21.24 each</div>
+            <div style="color: #22c55e; font-size: 12px; margin-top: 4px;">15% bulk discount</div>
+          </div>
+        </div>
+        
+        <div class="cart-item">
+          <div class="item-image"></div>
+          <div class="item-details">
+            <h3>Smart Light Strip 2M</h3>
+            <p>Flexible LED strip with millions of colors</p>
+            <div class="item-actions">
+              <div class="qty-control">
+                <button class="qty-btn">-</button>
+                <input type="number" class="qty-input" value="1" min="1">
+                <button class="qty-btn">+</button>
+              </div>
+              <button class="remove-btn">Remove</button>
+            </div>
+          </div>
+          <div class="item-price">
+            <div class="price">$49.99</div>
+            <div class="unit-price">$49.99 each</div>
+          </div>
+        </div>
+        
+        <div class="cart-item">
+          <div class="item-image"></div>
+          <div class="item-details">
+            <h3>Smart Hub Pro</h3>
+            <p>Central control for up to 150 devices</p>
+            <div class="item-actions">
+              <div class="qty-control">
+                <button class="qty-btn">-</button>
+                <input type="number" class="qty-input" value="1" min="1">
+                <button class="qty-btn">+</button>
+              </div>
+              <button class="remove-btn">Remove</button>
+            </div>
+          </div>
+          <div class="item-price">
+            <div class="price">$129.99</div>
+            <div class="unit-price">$129.99 each</div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="order-summary">
+        <h2 style="font-size: 24px; margin-bottom: 24px;">Order Summary</h2>
+        
+        <div class="summary-row">
+          <span>Subtotal (6 items)</span>
+          <span style="font-family: 'JetBrains Mono', monospace;">$264.94</span>
+        </div>
+        
+        <div class="summary-row" style="color: #22c55e;">
+          <span>Bulk Discount</span>
+          <span style="font-family: 'JetBrains Mono', monospace;">-$15.00</span>
+        </div>
+        
+        <div class="summary-row">
+          <span>Shipping</span>
+          <span style="font-family: 'JetBrains Mono', monospace; color: #22c55e;">FREE</span>
+        </div>
+        
+        <div class="summary-row">
+          <span>Tax</span>
+          <span style="font-family: 'JetBrains Mono', monospace;">$21.25</span>
+        </div>
+        
+        <div class="promo-code">
+          <div class="promo-input">
+            <input type="text" placeholder="Promo code">
+            <button class="btn-apply">Apply</button>
+          </div>
+        </div>
+        
+        <div class="summary-row total">
+          <span>Total</span>
+          <span style="font-family: 'JetBrains Mono', monospace;">$271.19</span>
+        </div>
+        
+        <button class="btn-checkout">Proceed to Checkout</button>
+        
+        <div style="text-align: center; color: #525252; font-size: 14px;">
+          <p style="margin-bottom: 8px;">🔒 Secure checkout</p>
+          <p>Need help? <a href="#" style="color: #647864;">Chat with us</a></p>
+        </div>
+        
+        <div class="security-badges">
+          <span style="background: #f5f5f5; padding: 8px 16px; border-radius: 6px; font-size: 12px;">SSL</span>
+          <span style="background: #f5f5f5; padding: 8px 16px; border-radius: 6px; font-size: 12px;">PCI</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

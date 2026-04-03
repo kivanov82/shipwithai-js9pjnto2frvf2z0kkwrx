@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smart Home Store - Make Your Home Naturally Intelligent</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'DM Sans', sans-serif; color: #171717; line-height: 1.6; }
+    .container { max-width: 1280px; margin: 0 auto; padding: 0 24px; }
+    header { background: white; border-bottom: 1px solid #e5e5e5; position: sticky; top: 0; z-index: 100; }
+    nav { display: flex; justify-content: space-between; align-items: center; height: 80px; }
+    .logo { font-size: 24px; font-weight: 600; color: #647864; }
+    .nav-links { display: flex; gap: 32px; list-style: none; }
+    .nav-links a { color: #525252; text-decoration: none; font-weight: 500; transition: color 0.2s; }
+    .nav-links a:hover { color: #647864; }
+    .nav-actions { display: flex; gap: 16px; align-items: center; }
+    .icon-btn { width: 40px; height: 40px; border: none; background: transparent; cursor: pointer; border-radius: 8px; transition: background 0.2s; }
+    .icon-btn:hover { background: #f6f7f6; }
+    .hero { background: linear-gradient(135deg, #f6f7f6 0%, #e3e7e3 100%); padding: 80px 0; }
+    .hero-content { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
+    .hero h1 { font-size: 48px; line-height: 1.2; margin-bottom: 24px; }
+    .hero p { font-size: 20px; color: #525252; margin-bottom: 32px; }
+    .btn-primary { background: #647864; color: white; border: none; padding: 12px 24px; border-radius: 8px; font-size: 16px; font-weight: 500; cursor: pointer; transition: all 0.2s; }
+    .btn-primary:hover { background: #4f5f4f; transform: translateY(-1px); }
+    .hero-image { background: #d4d4d4; aspect-ratio: 4/3; border-radius: 12px; }
+    .section { padding: 80px 0; }
+    .section-header { text-align: center; margin-bottom: 48px; }
+    .section h2 { font-size: 36px; margin-bottom: 16px; }
+    .section-subtitle { font-size: 18px; color: #525252; }
+    .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 24px; }
+    .product-card { background: white; border: 1px solid #e5e5e5; border-radius: 12px; overflow: hidden; transition: all 0.2s; cursor: pointer; }
+    .product-card:hover { transform: translateY(-2px); box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); }
+    .product-image { aspect-ratio: 4/3; background: #f5f5f5; }
+    .product-info { padding: 20px; }
+    .product-name { font-size: 18px; font-weight: 600; margin-bottom: 8px; }
+    .product-desc { color: #525252; font-size: 14px; margin-bottom: 16px; }
+    .product-price { font-size: 24px; font-weight: 600; color: #171717; }
+    .features { background: #f6f7f6; }
+    .feature-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+    .feature { text-align: center; }
+    .feature-icon { width: 64px; height: 64px; background: #647864; border-radius: 12px; margin: 0 auto 16px; }
+    .cta { background: linear-gradient(135deg, #647864 0%, #7f957f 100%); color: white; text-align: center; border-radius: 16px; padding: 64px; }
+    footer { background: #171717; color: #a3a3a3; padding: 48px 0; }
+    .footer-content { display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; margin-bottom: 32px; }
+    .footer-section h4 { color: white; margin-bottom: 16px; }
+    @media (max-width: 768px) {
+      .hero-content { grid-template-columns: 1fr; }
+      .hero h1 { font-size: 36px; }
+      .feature-grid { grid-template-columns: 1fr; }
+      .footer-content { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="container">
+      <div class="logo">SmartHome</div>
+      <ul class="nav-links">
+        <li><a href="#">Products</a></li>
+        <li><a href="#">Bundles</a></li>
+        <li><a href="#">Quiz</a></li>
+        <li><a href="#">Installation</a></li>
+        <li><a href="#">About</a></li>
+      </ul>
+      <div class="nav-actions">
+        <button class="icon-btn">🔍</button>
+        <button class="icon-btn">🛒</button>
+        <button class="icon-btn">👤</button>
+      </div>
+    </nav>
+  </header>
+  
+  <section class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <div>
+          <h1>Your Home, Naturally Intelligent</h1>
+          <p>Transform your living space with smart home technology that adapts to your lifestyle. Simple setup, professional installation available.</p>
+          <button class="btn-primary">Take the Smart Home Quiz →</button>
+        </div>
+        <div class="hero-image"></div>
+      </div>
+    </div>
+  </section>
+  
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <h2>Popular Smart Home Bundles</h2>
+        <p class="section-subtitle">Pre-configured packages for every need and budget</p>
+      </div>
+      <div class="product-grid">
+        <div class="product-card">
+          <div class="product-image"></div>
+          <div class="product-info">
+            <h3 class="product-name">Starter Bundle</h3>
+            <p class="product-desc">Perfect for beginners. Includes smart hub, 3 bulbs, and motion sensor.</p>
+            <div class="product-price">$199</div>
+          </div>
+        </div>
+        <div class="product-card">
+          <div class="product-image"></div>
+          <div class="product-info">
+            <h3 class="product-name">Security Bundle</h3>
+            <p class="product-desc">Complete home security with cameras, sensors, and smart locks.</p>
+            <div class="product-price">$599</div>
+          </div>
+        </div>
+        <div class="product-card">
+          <div class="product-image"></div>
+          <div class="product-info">
+            <h3 class="product-name">Comfort Bundle</h3>
+            <p class="product-desc">Climate control with smart thermostat, fans, and window sensors.</p>
+            <div class="product-price">$449</div>
+          </div>
+        </div>
+        <div class="product-card">
+          <div class="product-image"></div>
+          <div class="product-info">
+            <h3 class="product-name">Complete Home</h3>
+            <p class="product-desc">Everything you need for a fully automated smart home experience.</p>
+            <div class="product-price">$1,299</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <section class="section features">
+    <div class="container">
+      <div class="section-header">
+        <h2>Why Choose Our Smart Home Solutions?</h2>
+      </div>
+      <div class="feature-grid">
+        <div class="feature">
+          <div class="feature-icon"></div>
+          <h3>Professional Installation</h3>
+          <p>Our certified technicians ensure perfect setup every time</p>
+        </div>
+        <div class="feature">
+          <div class="feature-icon"></div>
+          <h3>Works Together</h3>
+          <p>All devices seamlessly integrate with Zigbee protocol</p>
+        </div>
+        <div class="feature">
+          <div class="feature-icon"></div>
+          <h3>Energy Efficient</h3>
+          <p>Save up to 30% on your energy bills with smart automation</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <section class="section">
+    <div class="container">
+      <div class="cta">
+        <h2>Not Sure Where to Start?</h2>
+        <p style="margin: 16px 0 24px;">Take our quick quiz to get personalized smart home recommendations</p>
+        <button class="btn-primary" style="background: white; color: #647864;">Start the Quiz</button>
+      </div>
+    </div>
+  </section>
+  
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h4>Products</h4>
+          <ul style="list-style: none;">
+            <li>Lighting</li>
+            <li>Security</li>
+            <li>Climate</li>
+            <li>Entertainment</li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>Support</h4>
+          <ul style="list-style: none;">
+            <li>Installation</li>
+            <li>User Guides</li>
+            <li>Warranty</li>
+            <li>Contact Us</li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>Company</h4>
+          <ul style="list-style: none;">
+            <li>About Us</li>
+            <li>Blog</li>
+            <li>Careers</li>
+            <li>Partners</li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>Connect</h4>
+          <p>Subscribe for smart home tips and exclusive offers</p>
+        </div>
+      </div>
+      <div style="text-align: center; padding-top: 32px; border-top: 1px solid #404040;">
+        <p>&copy; 2024 SmartHome Store. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
