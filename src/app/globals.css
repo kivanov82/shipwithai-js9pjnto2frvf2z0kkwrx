@@ -1,0 +1,98 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 9%;
+    --muted: 0 0% 96%;
+    --border: 0 0% 90%;
+    --primary: 120 14% 42%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 120 6% 97%;
+    --secondary-foreground: 0 0% 9%;
+    --accent: 120 12% 52%;
+    --accent-foreground: 0 0% 100%;
+    --success: 120 14% 42%;
+    --warning: 38 92% 50%;
+    --error: 0 84% 60%;
+    --info: 217 91% 60%;
+  }
+
+  * {
+    @apply border-border;
+  }
+  
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+  }
+}
+
+@layer utilities {
+  .animate-fade-in {
+    animation: fade-in 0.3s ease-in-out;
+  }
+
+  .animate-slide-up {
+    animation: slide-up 0.3s ease-out;
+  }
+
+  .animate-pulse-glow {
+    animation: pulse-glow 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  .glass-effect {
+    @apply backdrop-blur-sm bg-white/80;
+  }
+
+  .device-card {
+    @apply relative overflow-hidden rounded-xl border border-sage-200 bg-white p-6 transition-all hover:shadow-lg;
+  }
+
+  .device-status-online {
+    @apply h-2 w-2 rounded-full bg-sage-500 animate-pulse-glow;
+  }
+
+  .device-status-offline {
+    @apply h-2 w-2 rounded-full bg-neutral-400;
+  }
+
+  .smart-button {
+    @apply inline-flex items-center justify-center rounded-lg px-4 py-2 text-sm font-medium transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage-500 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50;
+  }
+
+  .smart-button-primary {
+    @apply smart-button bg-sage-500 text-white hover:bg-sage-600;
+  }
+
+  .smart-button-secondary {
+    @apply smart-button bg-sage-100 text-sage-900 hover:bg-sage-200;
+  }
+
+  .smart-button-outline {
+    @apply smart-button border border-sage-300 bg-transparent hover:bg-sage-50;
+  }
+
+  .smart-input {
+    @apply flex h-10 w-full rounded-md border border-neutral-300 bg-white px-3 py-2 text-sm placeholder:text-neutral-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage-500 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50;
+  }
+
+  .smart-label {
+    @apply text-sm font-medium text-neutral-700;
+  }
+
+  .price-tag {
+    @apply font-mono text-lg font-semibold text-sage-700;
+  }
+
+  .bundle-gradient {
+    @apply bg-gradient-to-r from-sage-100 to-sage-50;
+  }
+
+  .hero-gradient {
+    @apply bg-gradient-to-br from-sage-50 via-white to-sage-100;
+  }
+}
