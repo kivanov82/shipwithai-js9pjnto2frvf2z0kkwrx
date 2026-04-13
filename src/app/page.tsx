@@ -1,23 +1,17 @@
-import { Hero } from '@/components/Home/Hero'
-import { FeaturedProducts } from '@/components/Home/FeaturedProducts'
-import { QuizBanner } from '@/components/Home/QuizBanner'
-import { BundleShowcase } from '@/components/Home/BundleShowcase'
-import { InstallationCTA } from '@/components/Home/InstallationCTA'
-import { Header } from '@/components/Layout/Header'
-import { Footer } from '@/components/Layout/Footer'
+import Hero from '@/components/home/Hero'
+import Features from '@/components/home/Features'
+import ProductShowcase from '@/components/home/ProductShowcase'
+import QuizCTA from '@/components/home/QuizCTA'
+import Newsletter from '@/components/home/Newsletter'
 
 export default function HomePage() {
   return (
     <>
-      <Header />
-      <main className="min-h-screen">
-        <Hero />
-        <FeaturedProducts />
-        <QuizBanner />
-        <BundleShowcase />
-        <InstallationCTA />
-      </main>
-      <Footer />
+      <Hero />
+      <Features />
+      <ProductShowcase />
+      <QuizCTA />
+      <Newsletter />
     </>
   )
 }
