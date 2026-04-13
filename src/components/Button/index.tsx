@@ -1,4 +1,5 @@
 import { type FC, type ButtonHTMLAttributes, forwardRef } from 'react';
+import Link from 'next/link';
 import { cn } from '@/lib/utils';
 
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
@@ -10,6 +11,8 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   isLoading?: boolean;
   /** Full width button */
   fullWidth?: boolean;
+  /** Link URL - renders as Link instead of button */
+  href?: string;
 }
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
@@ -22,6 +25,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       fullWidth = false,
       disabled,
       children,
+      href,
       ...props
     },
     ref
@@ -46,19 +50,8 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       lg: 'h-12 px-8 text-lg rounded-lg',
     };
 
-    return (
-      <button
-        ref={ref}
-        className={cn(
-          baseClasses,
-          variantClasses[variant],
-          sizeClasses[size],
-          fullWidth && 'w-full',
-          className
-        )}
-        disabled={disabled || isLoading}
-        {...props}
-      >
+    const buttonContent = (
+      <>
         {isLoading && (
           <svg
             className="mr-2 h-4 w-4 animate-spin"
@@ -82,6 +75,33 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           </svg>
         )}
         {children}
+      </>
+    );
+
+    const combinedClasses = cn(
+      baseClasses,
+      variantClasses[variant],
+      sizeClasses[size],
+      fullWidth && 'w-full',
+      className
+    );
+
+    if (href) {
+      return (
+        <Link href={href} className={combinedClasses}>
+          {buttonContent}
+        </Link>
+      );
+    }
+
+    return (
+      <button
+        ref={ref}
+        className={combinedClasses}
+        disabled={disabled || isLoading}
+        {...props}
+      >
+        {buttonContent}
       </button>
     );
   }
