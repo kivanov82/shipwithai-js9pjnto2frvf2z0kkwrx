@@ -1,14 +1,13 @@
 import type { Metadata } from 'next'
+import { DM_Sans } from 'next/font/google'
 import './globals.css'
+import { CartProvider } from '@/lib/hooks/useCart'
+
+const dmSans = DM_Sans({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'Smart Home Store - Transform Your Living Space',
-  description: 'Discover our curated selection of smart home devices. Easy setup, professional installation, and ongoing support.',
-  openGraph: {
-    title: 'Smart Home Store',
-    description: 'Transform your living space with intelligent automation',
-    type: 'website',
-  },
+  title: 'Smart Home Store',
+  description: 'Transform your home with our curated smart devices',
 }
 
 export default function RootLayout({
@@ -18,7 +17,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body className={dmSans.className}>
+        <CartProvider>
+          {children}
+        </CartProvider>
+      </body>
     </html>
   )
 }
