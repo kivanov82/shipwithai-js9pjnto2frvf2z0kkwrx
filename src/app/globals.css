@@ -1,98 +1,104 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap');
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 0 0% 9%;
-    --muted: 0 0% 96%;
-    --border: 0 0% 90%;
-    --primary: 120 14% 42%;
-    --primary-foreground: 0 0% 100%;
-    --secondary: 120 6% 97%;
-    --secondary-foreground: 0 0% 9%;
-    --accent: 120 12% 52%;
-    --accent-foreground: 0 0% 100%;
-    --success: 120 14% 42%;
-    --warning: 38 92% 50%;
-    --error: 0 84% 60%;
-    --info: 217 91% 60%;
+    --sage-50: #f6f7f6;
+    --sage-100: #e3e7e3;
+    --sage-200: #c7d1c7;
+    --sage-300: #a3b3a3;
+    --sage-400: #7f957f;
+    --sage-500: #647864;
+    --sage-600: #4f5f4f;
+    --sage-700: #414b41;
+    --sage-800: #363d36;
+    --sage-900: #2f332f;
   }
 
-  * {
-    @apply border-border;
+  html {
+    scroll-behavior: smooth;
   }
-  
+
   body {
-    @apply bg-background text-foreground font-sans antialiased;
+    @apply text-neutral-800 antialiased;
+  }
+}
+
+@layer components {
+  /* Smart Button Styles */
+  .smart-button-primary {
+    @apply inline-flex items-center justify-center px-6 py-3 bg-sage-600 text-white font-medium rounded-lg transition-all duration-200 hover:bg-sage-700 focus:outline-none focus:ring-2 focus:ring-sage-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .smart-button-secondary {
+    @apply inline-flex items-center justify-center px-6 py-3 bg-sage-50 text-sage-700 font-medium rounded-lg transition-all duration-200 hover:bg-sage-100 focus:outline-none focus:ring-2 focus:ring-sage-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .smart-button-outline {
+    @apply inline-flex items-center justify-center px-6 py-3 bg-white border-2 border-sage-500 text-sage-600 font-medium rounded-lg transition-all duration-200 hover:bg-sage-50 focus:outline-none focus:ring-2 focus:ring-sage-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  /* Hero Gradient */
+  .hero-gradient {
+    @apply bg-gradient-to-br from-sage-50 via-white to-sage-50;
+  }
+
+  /* Card Hover Effects */
+  .card-hover {
+    @apply transition-all duration-300 hover:shadow-lg hover:-translate-y-1;
+  }
+
+  /* Focus Visible */
+  *:focus-visible {
+    @apply outline-none ring-2 ring-sage-500 ring-offset-2;
   }
 }
 
 @layer utilities {
-  .animate-fade-in {
-    animation: fade-in 0.3s ease-in-out;
+  /* Text Balance */
+  .text-balance {
+    text-wrap: balance;
   }
 
-  .animate-slide-up {
-    animation: slide-up 0.3s ease-out;
+  /* Animate on scroll */
+  .animate-on-scroll {
+    @apply opacity-0 translate-y-4 transition-all duration-700;
+  }
+  
+  .animate-on-scroll.show {
+    @apply opacity-100 translate-y-0;
   }
 
-  .animate-pulse-glow {
-    animation: pulse-glow 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  /* Custom scrollbar */
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
   }
 
-  .glass-effect {
-    @apply backdrop-blur-sm bg-white/80;
+  .custom-scrollbar::-webkit-scrollbar-track {
+    @apply bg-neutral-100;
   }
 
-  .device-card {
-    @apply relative overflow-hidden rounded-xl border border-sage-200 bg-white p-6 transition-all hover:shadow-lg;
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    @apply bg-sage-400 rounded-full;
   }
 
-  .device-status-online {
-    @apply h-2 w-2 rounded-full bg-sage-500 animate-pulse-glow;
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    @apply bg-sage-500;
   }
+}
 
-  .device-status-offline {
-    @apply h-2 w-2 rounded-full bg-neutral-400;
+/* Custom animations */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
   }
+  50% {
+    transform: translateY(-10px);
+  }
+}
 
-  .smart-button {
-    @apply inline-flex items-center justify-center rounded-lg px-4 py-2 text-sm font-medium transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage-500 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50;
-  }
-
-  .smart-button-primary {
-    @apply smart-button bg-sage-500 text-white hover:bg-sage-600;
-  }
-
-  .smart-button-secondary {
-    @apply smart-button bg-sage-100 text-sage-900 hover:bg-sage-200;
-  }
-
-  .smart-button-outline {
-    @apply smart-button border border-sage-300 bg-transparent hover:bg-sage-50;
-  }
-
-  .smart-input {
-    @apply flex h-10 w-full rounded-md border border-neutral-300 bg-white px-3 py-2 text-sm placeholder:text-neutral-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage-500 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50;
-  }
-
-  .smart-label {
-    @apply text-sm font-medium text-neutral-700;
-  }
-
-  .price-tag {
-    @apply font-mono text-lg font-semibold text-sage-700;
-  }
-
-  .bundle-gradient {
-    @apply bg-gradient-to-r from-sage-100 to-sage-50;
-  }
-
-  .hero-gradient {
-    @apply bg-gradient-to-br from-sage-50 via-white to-sage-100;
-  }
+.animate-float {
+  animation: float 3s ease-in-out infinite;
 }

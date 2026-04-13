@@ -1,9 +1,11 @@
 'use client'
 
-import { type FC } from 'react'
+import { type FC, useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
-import { Star, ShoppingCart } from 'lucide-react'
+import { Star, ShoppingCart, Check } from 'lucide-react'
+import { motion, AnimatePresence } from 'framer-motion'
+import { useCart } from '@/lib/hooks/useCart'
 import { cn } from '@/lib/utils'
 
 interface Product {
@@ -25,14 +27,24 @@ interface ProductCardProps {
 }
 
 export const ProductCard: FC<ProductCardProps> = ({ product, className }) => {
+  const { addItem } = useCart()
+  const [isAdded, setIsAdded] = useState(false)
+  
   const discount = product.originalPrice 
     ? Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100)
     : 0
 
   const handleAddToCart = (e: React.MouseEvent) => {
     e.preventDefault()
-    // TODO: Implement cart functionality
-    console.log('Add to cart:', product.id)
+    addItem({
+      id: product.id,
+      name: product.name,
+      description: product.description,
+      price: product.price
+    })
+    
+    setIsAdded(true)
+    setTimeout(() => setIsAdded(false), 2000)
   }
 
   return (
@@ -109,10 +121,31 @@ export const ProductCard: FC<ProductCardProps> = ({ product, className }) => {
 
             <button
               onClick={handleAddToCart}
-              className="p-2 bg-sage-50 hover:bg-sage-100 rounded-lg transition-colors group-hover:scale-110 transform duration-200"
+              className="relative p-2 bg-sage-50 hover:bg-sage-100 rounded-lg transition-all group-hover:scale-110 transform duration-200"
               aria-label="Add to cart"
             >
-              <ShoppingCart className="h-5 w-5 text-sage-600" />
+              <AnimatePresence mode="wait">
+                {isAdded ? (
+                  <motion.div
+                    key="check"
+                    initial={{ scale: 0 }}
+                    animate={{ scale: 1 }}
+                    exit={{ scale: 0 }}
+                    className="w-5 h-5"
+                  >
+                    <Check className="h-5 w-5 text-green-600" />
+                  </motion.div>
+                ) : (
+                  <motion.div
+                    key="cart"
+                    initial={{ scale: 0 }}
+                    animate={{ scale: 1 }}
+                    exit={{ scale: 0 }}
+                  >
+                    <ShoppingCart className="h-5 w-5 text-sage-600" />
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </button>
           </div>
         </div>

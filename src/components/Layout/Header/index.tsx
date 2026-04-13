@@ -1,88 +1,149 @@
 'use client'
 
-import { type FC } from 'react'
+import { type FC, useState, useEffect } from 'react'
 import Link from 'next/link'
-import { Home, ShoppingCart, Menu, X, Lightbulb, Package, Phone, Calendar } from 'lucide-react'
+import { Menu, X, ShoppingCart, Search, User } from 'lucide-react'
+import { motion, AnimatePresence } from 'framer-motion'
+import { useCart } from '@/lib/hooks/useCart'
 import { cn } from '@/lib/utils'
-import { useState } from 'react'
 
 export const Header: FC = () => {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [isScrolled, setIsScrolled] = useState(false)
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const { itemCount } = useCart()
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 0)
+    }
+
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
 
   const navigation = [
-    { name: 'Products', href: '/products', icon: Lightbulb },
-    { name: 'Bundles', href: '/bundles', icon: Package },
+    { name: 'Products', href: '/products' },
     { name: 'Quiz', href: '/quiz' },
-    { name: 'Installation', href: '/installation', icon: Calendar },
-    { name: 'Support', href: '/support', icon: Phone },
+    { name: 'Bundles', href: '/bundles' },
+    { name: 'Installation', href: '/installation' },
+    { name: 'Support', href: '/support' },
   ]
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/80">
-      <nav className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex h-16 items-center justify-between">
-          {/* Logo */}
-          <Link href="/" className="flex items-center space-x-2">
-            <Home className="h-8 w-8 text-sage-600" />
-            <span className="text-xl font-semibold text-neutral-900">SmartHome</span>
-          </Link>
-
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex md:items-center md:space-x-8">
-            {navigation.map((item) => (
-              <Link
-                key={item.name}
-                href={item.href}
-                className="flex items-center space-x-1 text-sm font-medium text-neutral-600 transition-colors hover:text-sage-600"
-              >
-                {item.icon && <item.icon className="h-4 w-4" />}
-                <span>{item.name}</span>
-              </Link>
-            ))}
-          </div>
-
-          {/* Cart & Mobile Menu */}
-          <div className="flex items-center space-x-4">
-            <Link
-              href="/cart"
-              className="relative p-2 text-neutral-600 transition-colors hover:text-sage-600"
-            >
-              <ShoppingCart className="h-5 w-5" />
-              <span className="absolute -right-1 -top-1 flex h-5 w-5 items-center justify-center rounded-full bg-sage-600 text-xs font-medium text-white">
-                0
-              </span>
+    <header
+      className={cn(
+        'sticky top-0 z-40 transition-all duration-300',
+        isScrolled
+          ? 'bg-white/95 backdrop-blur-md shadow-sm'
+          : 'bg-white'
+      )}
+    >
+      <nav className="border-b border-neutral-200">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between h-20">
+            {/* Logo */}
+            <Link href="/" className="flex items-center space-x-2">
+              <div className="w-8 h-8 bg-sage-500 rounded-lg flex items-center justify-center">
+                <span className="text-white font-bold text-lg">S</span>
+              </div>
+              <span className="text-xl font-bold text-neutral-900">SmartHome</span>
             </Link>
 
-            <button
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="md:hidden p-2 text-neutral-600"
-            >
-              {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-            </button>
+            {/* Desktop Navigation */}
+            <div className="hidden lg:flex items-center space-x-8">
+              {navigation.map((item) => (
+                <Link
+                  key={item.name}
+                  href={item.href}
+                  className="text-neutral-600 hover:text-sage-600 font-medium transition-colors"
+                >
+                  {item.name}
+                </Link>
+              ))}
+            </div>
+
+            {/* Actions */}
+            <div className="flex items-center space-x-4">
+              {/* Search */}
+              <button
+                className="p-2 hover:bg-sage-50 rounded-lg transition-colors"
+                aria-label="Search"
+              >
+                <Search className="h-5 w-5 text-neutral-600" />
+              </button>
+
+              {/* Account */}
+              <button
+                className="p-2 hover:bg-sage-50 rounded-lg transition-colors hidden sm:block"
+                aria-label="Account"
+              >
+                <User className="h-5 w-5 text-neutral-600" />
+              </button>
+
+              {/* Cart */}
+              <Link
+                href="/cart"
+                className="relative p-2 hover:bg-sage-50 rounded-lg transition-colors"
+                aria-label="Shopping cart"
+              >
+                <ShoppingCart className="h-5 w-5 text-neutral-600" />
+                {itemCount > 0 && (
+                  <span className="absolute -top-1 -right-1 w-5 h-5 bg-sage-500 text-white text-xs font-semibold rounded-full flex items-center justify-center">
+                    {itemCount}
+                  </span>
+                )}
+              </Link>
+
+              {/* Mobile Menu Button */}
+              <button
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                className="lg:hidden p-2 hover:bg-sage-50 rounded-lg transition-colors"
+                aria-label="Menu"
+              >
+                {isMobileMenuOpen ? (
+                  <X className="h-5 w-5 text-neutral-600" />
+                ) : (
+                  <Menu className="h-5 w-5 text-neutral-600" />
+                )}
+              </button>
+            </div>
           </div>
         </div>
 
-        {/* Mobile Navigation */}
-        <div
-          className={cn(
-            'md:hidden transition-all duration-200 ease-in-out',
-            mobileMenuOpen ? 'max-h-64 opacity-100' : 'max-h-0 opacity-0 overflow-hidden'
+        {/* Mobile Menu */}
+        <AnimatePresence>
+          {isMobileMenuOpen && (
+            <motion.div
+              initial={{ height: 0, opacity: 0 }}
+              animate={{ height: 'auto', opacity: 1 }}
+              exit={{ height: 0, opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              className="lg:hidden border-t border-neutral-200 bg-white overflow-hidden"
+            >
+              <div className="container mx-auto px-4 py-4">
+                {navigation.map((item) => (
+                  <Link
+                    key={item.name}
+                    href={item.href}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="block py-3 text-neutral-600 hover:text-sage-600 font-medium transition-colors"
+                  >
+                    {item.name}
+                  </Link>
+                ))}
+                <div className="mt-4 pt-4 border-t border-neutral-200">
+                  <Link
+                    href="/account"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="block py-3 text-neutral-600 hover:text-sage-600 font-medium transition-colors"
+                  >
+                    My Account
+                  </Link>
+                </div>
+              </div>
+            </motion.div>
           )}
-        >
-          <div className="space-y-1 pb-3 pt-2">
-            {navigation.map((item) => (
-              <Link
-                key={item.name}
-                href={item.href}
-                className="flex items-center space-x-2 rounded-lg px-3 py-2 text-base font-medium text-neutral-600 hover:bg-sage-50 hover:text-sage-600"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                {item.icon && <item.icon className="h-5 w-5" />}
-                <span>{item.name}</span>
-              </Link>
-            ))}
-          </div>
-        </div>
+        </AnimatePresence>
       </nav>
     </header>
   )
